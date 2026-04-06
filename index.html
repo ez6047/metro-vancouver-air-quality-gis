@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="GEOS 370 final project exploring the spatial relationship between transportation intensity and PM2.5 across Metro Vancouver using ArcGIS Pro."
+    />
+    <title>GEOS 370 Final Project | Air Quality and Transportation Intensity</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar">
+        <a class="brand" href="#home">GEOS 370</a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#introduction">Introduction</a>
+          <a href="#objective">Project Objective</a>
+          <a href="#methodology">Methodology</a>
+          <a href="#results">Results</a>
+          <a href="#discussion">Discussion</a>
+        </div>
+      </nav>
+
+      <section class="hero" id="home">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">GIS Final Project • Metro Vancouver</p>
+          <h1>Air Quality and Transportation Intensity at the 1 km Scale</h1>
+          <p class="hero-subtitle">
+            An ArcGIS Pro analysis of whether elevated transportation intensity is
+            spatially associated with higher PM<span class="small-cap">2.5</span>
+            concentrations across Metro Vancouver.
+          </p>
+          <div class="hero-meta">
+            <!-- Replace course, author, or term details here later -->
+            <span>Course: GEOS 370</span>
+            <span>Software: ArcGIS Pro</span>
+            <span>Study Area: Metro Vancouver</span>
+          </div>
+        </div>
+        <div class="hero-panel reveal">
+          <div class="hero-card">
+            <h2>Project Snapshot</h2>
+            <ul>
+              <li>1 km PM<span class="small-cap">2.5</span> raster surface</li>
+              <li>Weighted road length proxy for transport intensity</li>
+              <li>Grid-based comparison and interpretation</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <section class="content-section abstract-section reveal">
+        <div class="section-heading">
+          <p class="section-kicker">1. Home</p>
+          <h2>Abstract</h2>
+        </div>
+        <div class="text-panel">
+          <!-- Replace this abstract text with your final version later -->
+          <p>
+            This project examines whether higher transportation intensity is
+            spatially associated with elevated PM<span class="small-cap">2.5</span>
+            concentrations across Metro Vancouver. Because the available
+            air-quality dataset is provided as a 1 km raster, the analysis is
+            conducted at a neighbourhood-scale rather than at the street level.
+            ArcGIS Pro is used to align all spatial inputs to a common 1 km grid,
+            construct a weighted road length proxy based on road classifications,
+            and compare transportation intensity with PM<span class="small-cap">2.5</span>
+            values using a consistent spatial framework.
+          </p>
+          <p>
+            The website presents a clear project narrative from research framing
+            through methodology, preliminary-style results, and discussion. The
+            current text and figures are polished placeholders designed for easy
+            revision once the final maps, statistics, and interpretations are
+            ready to publish.
+          </p>
+        </div>
+      </section>
+
+      <section class="content-section reveal" id="introduction">
+        <div class="section-heading">
+          <p class="section-kicker">2. Introduction</p>
+          <h2>Urban Air Quality in a Transportation Landscape</h2>
+        </div>
+        <div class="split-layout">
+          <div class="text-panel">
+            <!-- Replace this introduction text with your final version later -->
+            <p>
+              Air quality is a central urban environmental issue because it
+              influences respiratory health, cardiovascular risk, and overall
+              quality of life. Fine particulate matter, especially
+              PM<span class="small-cap">2.5</span>, is often used as a key
+              indicator because of its ability to remain suspended in the air and
+              penetrate deeply into the lungs. Understanding how this pollutant is
+              distributed across a metropolitan region can support more informed
+              environmental planning and public health analysis.
+            </p>
+            <p>
+              Transportation systems are an important contributor to urban
+              pollution through vehicle emissions, roadway activity, and the
+              concentration of movement within densely connected corridors. Metro
+              Vancouver is a meaningful study area because it combines a large
+              regional road network, diverse land uses, and strong variation in
+              urban intensity across municipalities. GIS-based spatial analysis is
+              well suited to this question because it allows environmental and
+              infrastructure datasets to be standardized, compared, and interpreted
+              within the same geographic framework.
+            </p>
+          </div>
+          <aside class="callout-card">
+            <h3>Why GIS for This Question?</h3>
+            <p>
+              GIS makes it possible to align raster and vector datasets, summarize
+              values by grid cell, and visualize spatial patterns that would be
+              difficult to interpret in tabular form alone.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="content-section reveal" id="objective">
+        <div class="section-heading">
+          <p class="section-kicker">3. Project Objective</p>
+          <h2>Research Focus</h2>
+        </div>
+        <div class="objective-grid">
+          <div class="text-panel question-panel">
+            <h3>Main Research Question</h3>
+            <p>
+              Is transportation intensity spatially associated with higher
+              PM<span class="small-cap">2.5</span> concentrations across Metro
+              Vancouver at the 1 km scale?
+            </p>
+          </div>
+          <div class="text-panel">
+            <h3>Project Goals</h3>
+            <ul class="styled-list">
+              <li>Standardize air-quality and transportation data within a common 1 km analysis grid.</li>
+              <li>Create a weighted road length metric that reflects differences in roadway importance.</li>
+              <li>Compare transportation intensity and PM<span class="small-cap">2.5</span> values across grid cells.</li>
+              <li>Interpret whether mapped and statistical patterns suggest a meaningful spatial relationship.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section reveal" id="methodology">
+        <div class="section-heading">
+          <p class="section-kicker">4. Methodology</p>
+          <h2>ArcGIS Workflow</h2>
+        </div>
+
+        <div class="method-grid">
+          <article class="method-card">
+            <span class="method-icon">01</span>
+            <h3>Standardize Spatial Data</h3>
+            <p>
+              All spatial inputs are projected, clipped, and aligned to a shared
+              1 km analysis grid. This creates a consistent unit of comparison so
+              each dataset can be summarized using the same spatial boundaries.
+            </p>
+          </article>
+          <article class="method-card">
+            <span class="method-icon">02</span>
+            <h3>Build a Transportation Proxy</h3>
+            <p>
+              Road classes are assigned relative weights and aggregated as total
+              weighted road length per grid cell. This produces a proxy variable
+              intended to represent transportation intensity across the region.
+            </p>
+          </article>
+          <article class="method-card">
+            <span class="method-icon">03</span>
+            <h3>Extract PM<span class="small-cap">2.5</span> Values</h3>
+            <p>
+              PM<span class="small-cap">2.5</span> concentrations from the 1 km
+              raster are extracted or summarized for each cell in the analysis
+              grid, allowing direct comparison with the transportation proxy.
+            </p>
+          </article>
+          <article class="method-card">
+            <span class="method-icon">04</span>
+            <h3>Compare Patterns and Statistics</h3>
+            <p>
+              Map-based interpretation is combined with descriptive or inferential
+              statistics to evaluate whether cells with higher transportation
+              intensity also tend to show higher PM<span class="small-cap">2.5</span>
+              values.
+            </p>
+          </article>
+        </div>
+
+        <div class="workflow-panel">
+          <h3>Workflow Diagram</h3>
+          <div class="workflow-diagram">
+            <!-- Replace this simple process flow with your own diagram or exported workflow image later -->
+            <div class="workflow-step">Input Data</div>
+            <div class="workflow-arrow">→</div>
+            <div class="workflow-step">1 km Grid Alignment</div>
+            <div class="workflow-arrow">→</div>
+            <div class="workflow-step">Weighted Road Length</div>
+            <div class="workflow-arrow">→</div>
+            <div class="workflow-step">PM<span class="small-cap">2.5</span> Extraction</div>
+            <div class="workflow-arrow">→</div>
+            <div class="workflow-step">Spatial Comparison</div>
+          </div>
+          <p class="caption">
+            Workflow placeholder. Replace with an exported ArcGIS model, custom
+            diagram, or a more detailed methods visual later.
+          </p>
+        </div>
+      </section>
+
+      <section class="content-section reveal" id="results">
+        <div class="section-heading">
+          <p class="section-kicker">5. Results</p>
+          <h2>Maps and Comparative Outputs</h2>
+        </div>
+
+        <div class="results-grid">
+          <figure class="result-card">
+            <div class="media-placeholder">
+              <span>PM<span class="small-cap">2.5</span> Raster Map Placeholder</span>
+            </div>
+            <figcaption>Figure 1. Example PM<span class="small-cap">2.5</span> concentration surface across Metro Vancouver.</figcaption>
+          </figure>
+
+          <figure class="result-card">
+            <div class="media-placeholder">
+              <span>Transportation Intensity Map Placeholder</span>
+            </div>
+            <figcaption>Figure 2. Weighted road length per 1 km grid cell.</figcaption>
+          </figure>
+
+          <figure class="result-card">
+            <div class="media-placeholder">
+              <span>Overlay / Comparison Map Placeholder</span>
+            </div>
+            <figcaption>Figure 3. Example spatial comparison of transportation intensity and air quality.</figcaption>
+          </figure>
+
+          <figure class="result-card">
+            <div class="media-placeholder">
+              <span>Chart or Regression Output Placeholder</span>
+            </div>
+            <figcaption>Figure 4. Example statistical relationship between PM<span class="small-cap">2.5</span> and weighted road length.</figcaption>
+          </figure>
+        </div>
+
+        <div class="text-panel">
+          <!-- Replace this interpretation text with your actual findings later -->
+          <p>
+            Preliminary-style interpretation suggests that cells with greater
+            transportation intensity may correspond with areas of relatively
+            elevated PM<span class="small-cap">2.5</span>, particularly in more
+            urbanized parts of the region. However, the current results shown here
+            are placeholders and should be replaced with the final maps, summary
+            statistics, and interpretation developed from the completed ArcGIS Pro
+            analysis.
+          </p>
+        </div>
+      </section>
+
+      <section class="content-section reveal" id="discussion">
+        <div class="section-heading">
+          <p class="section-kicker">6. Discussion</p>
+          <h2>Interpretation and Limitations</h2>
+        </div>
+        <div class="discussion-grid">
+          <div class="text-panel">
+            <!-- Replace this discussion text with your final discussion later -->
+            <p>
+              If the final analysis shows a positive relationship, one possible
+              interpretation is that areas with more intense transportation
+              infrastructure also tend to experience greater exposure to
+              traffic-related air pollution. Even so, this relationship should be
+              interpreted cautiously because PM<span class="small-cap">2.5</span>
+              concentrations can also reflect industrial activity, regional
+              atmospheric conditions, and broader land-use patterns.
+            </p>
+            <p>
+              A major limitation of the project is the use of 1 km air-quality
+              data. This resolution is appropriate for neighbourhood-scale
+              comparison but may smooth out finer variations near major roads or
+              intersections. In addition, weighted road length is only a proxy for
+              transportation intensity and does not directly capture traffic
+              counts, congestion, fleet composition, or temporal variation.
+            </p>
+            <p>
+              The analysis is also shaped by geographic scale and the modifiable
+              areal unit problem (MAUP). Results may differ if alternate grid sizes
+              or zoning schemes are used. Future improvements could include
+              finer-resolution pollution surfaces, observed traffic volume data,
+              time-specific transportation measures, or multivariate models that
+              account for land use and population density.
+            </p>
+          </div>
+          <aside class="callout-card">
+            <h3>Future Extensions</h3>
+            <ul class="styled-list">
+              <li>Use finer-resolution air pollution surfaces if available.</li>
+              <li>Integrate traffic counts or congestion data instead of proxies.</li>
+              <li>Test multiple spatial units to assess scale sensitivity.</li>
+              <li>Expand to multivariate or temporal analysis.</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <!-- Replace footer details here later -->
+      <p>GEOS 370 Final Project • ArcGIS Pro Spatial Analysis • Metro Vancouver</p>
+      <p>Author Name Placeholder • University / Term Placeholder</p>
+    </footer>
+
+    <button class="back-to-top" type="button" aria-label="Back to top">
+      ↑
+    </button>
+
+    <script src="script.js"></script>
+  </body>
+</html>
