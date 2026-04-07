@@ -16,10 +16,12 @@
     />
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <header class="site-header">
       <nav class="navbar">
         <a class="brand" href="#home">GEOS 370</a>
+
         <button
           class="nav-toggle"
           type="button"
@@ -30,6 +32,7 @@
           <span></span>
           <span></span>
         </button>
+
         <div class="nav-links">
           <a href="#home">Home</a>
           <a href="#introduction">Introduction</a>
@@ -50,12 +53,12 @@
             concentrations across Metro Vancouver.
           </p>
           <div class="hero-meta">
-            <!-- Replace course, author, or term details here later -->
             <span>Course: GEOS 370</span>
             <span>Software: ArcGIS Pro</span>
             <span>Study Area: Metro Vancouver</span>
           </div>
         </div>
+
         <div class="hero-panel reveal">
           <div class="hero-card">
             <h2>Project Snapshot</h2>
@@ -75,8 +78,8 @@
           <p class="section-kicker">1. Home</p>
           <h2>Abstract</h2>
         </div>
+
         <div class="text-panel">
-          <!-- Replace this abstract text with your final version later -->
           <p>
             This project examines whether higher transportation intensity is
             spatially associated with elevated PM<span class="small-cap">2.5</span>
@@ -88,12 +91,11 @@
             and compare transportation intensity with PM<span class="small-cap">2.5</span>
             values using a consistent spatial framework.
           </p>
+
           <p>
             The website presents a clear project narrative from research framing
-            through methodology, preliminary-style results, and discussion. The
-            current text and figures are polished placeholders designed for easy
-            revision once the final maps, statistics, and interpretations are
-            ready to publish.
+            through methodology, results, and discussion. Figures are formatted
+            for the final draft and can be updated or swapped easily.
           </p>
         </div>
       </section>
@@ -103,9 +105,9 @@
           <p class="section-kicker">2. Introduction</p>
           <h2>Urban Air Quality in a Transportation Landscape</h2>
         </div>
+
         <div class="split-layout">
           <div class="text-panel">
-            <!-- Replace this introduction text with your final version later -->
             <p>
               Air quality is a central urban environmental issue because it
               influences respiratory health, cardiovascular risk, and overall
@@ -116,6 +118,7 @@
               distributed across a metropolitan region can support more informed
               environmental planning and public health analysis.
             </p>
+
             <p>
               Transportation systems are an important contributor to urban
               pollution through vehicle emissions, roadway activity, and the
@@ -128,6 +131,7 @@
               within the same geographic framework.
             </p>
           </div>
+
           <aside class="callout-card">
             <h3>Why GIS for This Question?</h3>
             <p>
@@ -144,6 +148,7 @@
           <p class="section-kicker">3. Project Objective</p>
           <h2>Research Focus</h2>
         </div>
+
         <div class="objective-grid">
           <div class="text-panel question-panel">
             <h3>Main Research Question</h3>
@@ -153,6 +158,7 @@
               Vancouver at the 1 km scale?
             </p>
           </div>
+
           <div class="text-panel">
             <h3>Project Goals</h3>
             <ul class="styled-list">
@@ -181,6 +187,7 @@
               each dataset can be summarized using the same spatial boundaries.
             </p>
           </article>
+
           <article class="method-card">
             <span class="method-icon">02</span>
             <h3>Build a Transportation Proxy</h3>
@@ -190,6 +197,7 @@
               intended to represent transportation intensity across the region.
             </p>
           </article>
+
           <article class="method-card">
             <span class="method-icon">03</span>
             <h3>Extract PM<span class="small-cap">2.5</span> Values</h3>
@@ -199,14 +207,14 @@
               grid, allowing direct comparison with the transportation proxy.
             </p>
           </article>
+
           <article class="method-card">
             <span class="method-icon">04</span>
             <h3>Compare Patterns and Statistics</h3>
             <p>
-              Map-based interpretation is combined with descriptive or inferential
-              statistics to evaluate whether cells with higher transportation
-              intensity also tend to show higher PM<span class="small-cap">2.5</span>
-              values.
+              Map-based interpretation is combined with statistics to evaluate whether
+              cells with higher transportation intensity also tend to show higher
+              PM<span class="small-cap">2.5</span> values.
             </p>
           </article>
         </div>
@@ -214,7 +222,6 @@
         <div class="workflow-panel">
           <h3>Workflow Diagram</h3>
           <div class="workflow-diagram">
-            <!-- Replace this simple process flow with your own diagram or exported workflow image later -->
             <div class="workflow-step">Input Data</div>
             <div class="workflow-arrow">→</div>
             <div class="workflow-step">1 km Grid Alignment</div>
@@ -230,51 +237,73 @@
             diagram, or a more detailed methods visual later.
           </p>
         </div>
+
+        <figure class="result-card">
+          <img src="traffic_density.png" alt="Weighted road network used to construct transportation intensity." />
+          <figcaption>Figure 1. Weighted road network used to construct transportation intensity (weighted road length proxy).</figcaption>
+        </figure>
       </section>
 
       <section class="content-section reveal" id="results">
         <div class="section-heading">
           <p class="section-kicker">5. Results</p>
-          <h2>Maps and Comparative Outputs</h2>
+          <h2>Maps and Model Outputs</h2>
         </div>
 
         <div class="results-grid">
           <figure class="result-card">
-            <div class="media-placeholder">
-              <span>PM<span class="small-cap">2.5</span> Raster Map Placeholder</span>
-            </div>
-            <figcaption>Figure 1. Example PM<span class="small-cap">2.5</span> concentration surface across Metro Vancouver.</figcaption>
+            <img src="pm25.png" alt="PM2.5 concentration map across Metro Vancouver (1 km raster)." />
+            <figcaption>
+              Figure 2. Spatial distribution of PM<span class="small-cap">2.5</span> concentrations across Metro Vancouver (1 km raster).
+            </figcaption>
           </figure>
 
           <figure class="result-card">
-            <div class="media-placeholder">
-              <span>Transportation Intensity Map Placeholder</span>
-            </div>
-            <figcaption>Figure 2. </figcaption>
+            <img src="pm25-raster.png" alt="PM2.5 polygons with traffic hit data." />
+            <figcaption>
+              Figure 3. PM<span class="small-cap">2.5</span> aggregated to 1 km grid cells with associated transportation intensity (analysis unit used for modelling).
+            </figcaption>
           </figure>
 
           <figure class="result-card">
-            <div class="media-placeholder">
-              <span>Overlay / Comparison Map Placeholder</span>
-            </div>
-            <figcaption>Figure 3. </figcaption>
+            <img src="OLS.png" alt="OLS regression output for PM2.5 and transportation intensity." />
+            <figcaption>
+              Figure 4. OLS relationship between transportation intensity and PM<span class="small-cap">2.5</span> (Adjusted R² = 0.044).
+            </figcaption>
           </figure>
 
           <figure class="result-card">
-            <div class="media-placeholder">
-              <span>Chart or Regression Output Placeholder</span>
-            </div>
-            <figcaption>Figure 4. </figcaption>
+            <img src="GWR.png" alt="GWR coefficient map showing spatial variation in the PM2.5 relationship." />
+            <figcaption>
+              Figure 5. Spatial variation in the relationship between transportation intensity and PM<span class="small-cap">2.5</span> derived from GWR.
+            </figcaption>
+          </figure>
+
+          <figure class="result-card">
+            <img src="GWR-relationship.png" alt="GWR diagnostics/performance output." />
+            <figcaption>
+              Figure 6. GWR variable relationship
+            </figcaption>
           </figure>
         </div>
 
         <div class="text-panel">
-          <!-- Replace this interpretation text with your actual findings later -->
+          <h3>Global vs. Local Model Performance</h3>
           <p>
-            Results suggest that cells with greater
-            transportation intensity correspond with areas of relatively
-            elevated PM<span class="small-cap">2.5</span>, particularly in more
-            urbanized parts of the region.
+            The OLS model indicates a weak global relationship between transportation intensity and PM<span class="small-cap">2.5</span> concentrations across Metro Vancouver (Adjusted R² = 0.044).
+            OLS residuals showed extreme spatial autocorrelation (Moran’s I = 0.95, z = 45.19, p &lt; 0.001), indicating non-stationarity and a violation of the independence assumption.
+          </p>
+
+          <p>
+            In contrast, GWR substantially improved model fit (Adjusted R² = 0.962), supporting a highly spatially variable relationship.
+            The optimal bandwidth (Golden Search) was very small (~30 neighbours), suggesting PM<span class="small-cap">2.5</span> varies at a highly local spatial scale.
+            The improvement primarily reflects GWR’s ability to capture spatial structure in the PM<span class="small-cap">2.5</span> surface rather than a dramatic increase in the explanatory power of traffic intensity alone.
+          </p>
+
+          <p>
+            GWR also reduced, but did not eliminate, residual spatial autocorrelation (Moran’s I = 0.556, z = 26.51, p &lt; 0.001).
+            This indicates substantial unexplained spatial structure remains, likely driven by additional processes beyond traffic intensity (regional background pollution, meteorology, and topography).
+            These results confirm non-stationarity (consistent with the Koenker/BP test) and justify spatially varying coefficient models.
           </p>
         </div>
       </section>
@@ -284,15 +313,17 @@
           <p class="section-kicker">6. Discussion</p>
           <h2>Interpretation and Limitations</h2>
         </div>
+
         <div class="discussion-grid">
           <div class="text-panel">
             <p>
               Areas with more intense transportation infrastructure tend to experience greater exposure to
               traffic-related air pollution. This relationship should be
               interpreted cautiously because PM<span class="small-cap">2.5</span>
-              concentrations can  reflect industrial activity, regional
+              concentrations can reflect industrial activity, regional
               atmospheric conditions, and broader land-use patterns.
             </p>
+
             <p>
               A major limitation of the project is the use of 1 km air-quality
               data. This resolution is appropriate for neighbourhood-scale
@@ -301,6 +332,7 @@
               transportation intensity and does not directly capture traffic
               counts, congestion, fleet composition, or temporal variation.
             </p>
+
             <p>
               The analysis is also shaped by geographic scale and the modifiable
               areal unit problem (MAUP). Results may differ if alternate grid sizes
@@ -310,6 +342,7 @@
               account for land use and population density.
             </p>
           </div>
+
           <aside class="callout-card">
             <h3>Future Extensions</h3>
             <ul class="styled-list">
@@ -324,15 +357,11 @@
     </main>
 
     <footer class="site-footer">
-      <!-- Replace footer details here later -->
       <p>GEOS 370 Final Project • ArcGIS Pro Spatial Analysis • Metro Vancouver</p>
-      <p>Eric Zhang (50257260) & Atticus Horne () • University of British Columbia / April, 2026</p>
+      <p>Eric Zhang (50257260) &amp; Atticus Horne ( ) • University of British Columbia / April 2026</p>
     </footer>
 
-    <button class="back-to-top" type="button" aria-label="Back to top">
-      ↑
-    </button>
-
+    <button class="back-to-top" type="button" aria-label="Back to top">↑</button>
     <script src="script.js"></script>
   </body>
 </html>
