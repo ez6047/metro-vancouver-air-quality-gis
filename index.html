@@ -305,108 +305,9 @@
           <p>
             This workflow was designed to preserve the original PM<span class="small-cap">2.5</span> grid
             values while translating the land-cover classification into a simpler binary variable suitable for
-            regression analysis. Each geoprocessing step was used to move from raw raster inputs toward a final
+            regression analysis. Each geoprocessing step moved the project from raw raster inputs toward a final
             modelling layer that could support OLS regression, GWR, and residual spatial autocorrelation testing.
           </p>
-        </div>
-
-        <div class="method-grid">
-          <article class="method-card">
-            <span class="method-icon">01</span>
-            <h3>Define the Explanatory Variable</h3>
-            <p>
-              The original land-cover classes were collapsed into a binary source/non-source classification so the
-              predictor variable represented the percentage of land in each PM<span class="small-cap">2.5</span>
-              zone that could plausibly contribute to particulate pollution.
-            </p>
-          </article>
-
-          <article class="method-card">
-            <span class="method-icon">02</span>
-            <h3>Create Comparable Spatial Units</h3>
-            <p>
-              The PM<span class="small-cap">2.5</span> raster was converted into Thiessen polygons so each
-              PM<span class="small-cap">2.5</span> value could be treated as a polygon-based analysis unit for
-              area calculations and later regression modelling.
-            </p>
-          </article>
-
-          <article class="method-card">
-            <span class="method-icon">03</span>
-            <h3>Summarize Source Area</h3>
-            <p>
-              Overlay tools were used to measure how much source-coded and non-source-coded land occurred within
-              each PM<span class="small-cap">2.5</span> polygon, allowing land-cover composition to be summarized numerically.
-            </p>
-          </article>
-
-          <article class="method-card">
-            <span class="method-icon">04</span>
-            <h3>Build the Regression Layer</h3>
-            <p>
-              The calculated percentage of potential source land use was joined back to the PM<span class="small-cap">2.5</span>
-              polygons, producing the final layer used in OLS and GWR analysis.
-            </p>
-          </article>
-        </div>
-
-        <div class="workflow-panel">
-          <h3>Detailed Step-by-Step Methods</h3>
-          <ol class="methods-list">
-            <li>
-              <strong>Step 1: Reclassify the land-use raster.</strong> The original land-cover raster contained
-              multiple classes such as built surfaces, vegetation types, water, and other cover categories. These
-              classes were reclassified into a binary field using the criteria table shown in the methods figure.
-              A value of 0 represented land-cover classes not treated as potential PM<span class="small-cap">2.5</span>
-              sources, while a value of 1 represented classes treated as potential PM<span class="small-cap">2.5</span>
-              source land use. This step reduced a complex categorical dataset into a simpler explanatory variable
-              that could be measured consistently across the study area.
-            </li>
-            <li>
-              <strong>Step 2: Convert the reclassified raster to polygons.</strong> After reclassification, the
-              binary raster was converted to polygon features. This made it possible to calculate land area by
-              class and overlay the land-use data with polygon-based PM<span class="small-cap">2.5</span>
-              analysis units in later steps.
-            </li>
-            <li>
-              <strong>Step 3: Convert the PM<span class="small-cap">2.5</span> raster to points.</strong> Each
-              raster cell was converted into a point feature carrying its PM<span class="small-cap">2.5</span>
-              concentration value. This preserved the original concentration surface while preparing the data for
-              Thiessen polygon generation.
-            </li>
-            <li>
-              <strong>Step 4: Convert PM<span class="small-cap">2.5</span> points to Thiessen polygons.</strong>
-              Thiessen polygons were created so that each PM<span class="small-cap">2.5</span> point defined the
-              surrounding area closest to that value. This produced a continuous polygon tessellation that could
-              be intersected with the reclassified land-use polygons. The Thiessen approach converted the raster-based
-              PM<span class="small-cap">2.5</span> surface into discrete areal units without averaging neighbouring cells.
-            </li>
-            <li>
-              <strong>Step 5: Clip PM<span class="small-cap">2.5</span> polygons to the land-use polygon layer.</strong>
-              The PM<span class="small-cap">2.5</span> Thiessen polygons were clipped using the reclassified
-              land-use polygon extent so both datasets occupied the same spatial footprint. This ensured that area
-              summaries were calculated only where both PM<span class="small-cap">2.5</span> and land-use information existed.
-            </li>
-            <li>
-              <strong>Step 6: Use Tabulate Area to summarize land-cover area inside each PM<span class="small-cap">2.5</span>
-              polygon.</strong> The Tabulate Area tool calculated the total area of land coded as non-source and the
-              total area coded as potential source within each PM<span class="small-cap">2.5</span> polygon. This
-              transformed the binary land-use classification into numeric area totals for each analysis unit.
-            </li>
-            <li>
-              <strong>Step 7: Use Calculate Field to compute the percentage of potential source land use.</strong>
-              The source-area totals from Tabulate Area were converted into a percentage variable representing the
-              proportion of each PM<span class="small-cap">2.5</span> polygon classified as potential PM<span class="small-cap">2.5</span>
-              source land use. This percentage became the main explanatory variable used in regression modelling.
-            </li>
-            <li>
-              <strong>Step 8: Join the tabulated results back to the clipped PM<span class="small-cap">2.5</span>
-              polygons.</strong> The calculated area and percentage fields were joined back to the clipped PM<span class="small-cap">2.5</span>
-              polygon layer. The resulting feature class contained both the PM<span class="small-cap">2.5</span>
-              value and the percentage of potential source land use for each polygon, making it suitable for mapping,
-              OLS regression, GWR, and residual diagnostics.
-            </li>
-          </ol>
 
           <div class="formula-callout">
             <p>
@@ -416,60 +317,142 @@
           </div>
         </div>
 
-        <div class="methods-step-grid">
-          <figure class="result-card">
-            <img src="step-1.png" alt="Step 1 reclassification table for the land-use raster." />
-            <figcaption>
-              Figure 3. Step 1 reclassification table used to collapse the original land-cover classes into binary
-              source and non-source categories.
-            </figcaption>
-          </figure>
-
-          <figure class="result-card">
-            <img src="step-2.png" alt="Step 2 map showing the reclassified land-use raster converted to polygons." />
-            <figcaption>
-              Figure 4. Step 2 output showing the reclassified land-use raster converted to polygons.
-            </figcaption>
-          </figure>
-
-          <figure class="result-card">
-            <img src="step-3.png" alt="Step 3 output showing PM2.5 raster cells converted to points." />
-            <figcaption>
-              Figure 5. Step 3 output showing the PM<span class="small-cap">2.5</span> raster converted to points.
-            </figcaption>
-          </figure>
-
-          <figure class="result-card">
-            <img src="step-4.png" alt="Step 4 output showing PM2.5 points converted to Thiessen polygons." />
-            <figcaption>
-              Figure 6. Step 4 output showing PM<span class="small-cap">2.5</span> points converted to Thiessen polygons.
-            </figcaption>
-          </figure>
-
-          <figure class="result-card">
-            <img src="step-5.png" alt="Step 5 output showing clipped PM2.5 polygons and land-use overlay." />
-            <figcaption>
-              Figure 7. Step 5 output showing the PM<span class="small-cap">2.5</span> polygons clipped to the
-              reclassified land-use polygons.
-            </figcaption>
-          </figure>
-
-          <figure class="result-card">
-            <img src="step-6-7.png" alt="Combined Step 6 and Step 7 table showing tabulated area and calculated percent potential source land use." />
-            <figcaption>
-              Figure 8. Combined Steps 6 and 7 showing tabulated area values and the calculated percentage of
-              potential PM<span class="small-cap">2.5</span>-source land use.
-            </figcaption>
-          </figure>
-
-          <figure class="result-card">
-            <img src="step-8.png" alt="Step 8 output showing the final PM2.5 polygon layer joined with percent potential source land use." />
-            <figcaption>
-              Figure 9. Step 8 output showing the final modelling layer after joining the calculated percentage
-              fields back to the PM<span class="small-cap">2.5</span> polygons.
-            </figcaption>
-          </figure>
+        <div class="text-panel">
+          <h3>Step 1: Reclassify Land Use Raster</h3>
+          <p>
+            The original land-cover raster contained multiple classes, including built surfaces, vegetation types,
+            water, and mixed land-cover categories. These classes were reclassified using the criteria table shown
+            in the workflow figure so that the dataset was reduced to a binary source/non-source surface. A value
+            of 0 represented land-cover classes not treated as potential PM<span class="small-cap">2.5</span>
+            sources, while a value of 1 represented classes treated as potential PM<span class="small-cap">2.5</span>
+            source land use. This step was necessary because the original categorical raster was too detailed to use
+            directly as a single explanatory variable in regression analysis.
+          </p>
         </div>
+
+        <figure class="result-card">
+          <img src="step-1.png" alt="Step 1 reclassification table for the land-use raster." />
+          <figcaption>
+            Figure 3. Step 1 reclassification table used to collapse the original land-cover classes into binary
+            source and non-source categories.
+          </figcaption>
+        </figure>
+
+        <div class="text-panel">
+          <h3>Step 2: Convert Raster to Polygon</h3>
+          <p>
+            After reclassification, the binary land-use raster was converted to polygons. This converted the source
+            and non-source categories into vector features with explicit boundaries, which made later overlay and
+            area calculations possible. Polygon conversion was important because the eventual objective was to measure
+            how much of each PM<span class="small-cap">2.5</span> analysis unit was covered by land classified as a
+            potential source.
+          </p>
+        </div>
+
+        <figure class="result-card">
+          <img src="step-2.png" alt="Step 2 map showing the reclassified land-use raster converted to polygons." />
+          <figcaption>
+            Figure 4. Step 2 output showing the reclassified land-use raster converted to polygons.
+          </figcaption>
+        </figure>
+
+        <div class="text-panel">
+          <h3>Step 3: Convert PM<span class="small-cap">2.5</span> Raster to Points</h3>
+          <p>
+            The PM<span class="small-cap">2.5</span> raster was then converted to points so that each raster cell
+            became a point feature carrying its PM<span class="small-cap">2.5</span> value. This preserved the
+            original concentration information while creating a dataset that could be used to build Thiessen polygons.
+            Converting the raster directly to points avoided averaging neighbouring cells and maintained the original
+            PM<span class="small-cap">2.5</span> value associated with each raster location.
+          </p>
+        </div>
+
+        <figure class="result-card">
+          <img src="step-3.png" alt="Step 3 output showing PM2.5 raster cells converted to points." />
+          <figcaption>
+            Figure 5. Step 3 output showing the PM<span class="small-cap">2.5</span> raster converted to points.
+          </figcaption>
+        </figure>
+
+        <div class="text-panel">
+          <h3>Step 4: Convert PM<span class="small-cap">2.5</span> Points to Thiessen Polygons</h3>
+          <p>
+            Thiessen polygons were created from the PM<span class="small-cap">2.5</span> points so that each point
+            defined the surrounding area closest to that PM<span class="small-cap">2.5</span> value. This transformed
+            the continuous raster surface into discrete polygon units that could be intersected with the land-use
+            polygons. The Thiessen method preserved local PM<span class="small-cap">2.5</span> representation while
+            producing areal units suitable for tabulating land-cover area.
+          </p>
+        </div>
+
+        <figure class="result-card">
+          <img src="step-4.png" alt="Step 4 output showing PM2.5 points converted to Thiessen polygons." />
+          <figcaption>
+            Figure 6. Step 4 output showing PM<span class="small-cap">2.5</span> points converted to Thiessen polygons.
+          </figcaption>
+        </figure>
+
+        <div class="text-panel">
+          <h3>Step 5: Clip PM<span class="small-cap">2.5</span> Polygon to Land Use Polygon</h3>
+          <p>
+            The PM<span class="small-cap">2.5</span> Thiessen polygons were clipped to the reclassified land-use
+            polygon extent so that both datasets occupied the same spatial footprint. This ensured that later area
+            summaries were only calculated where both PM<span class="small-cap">2.5</span> and land-use information
+            existed. Clipping also prepared the data for tabulation by removing areas outside the overlapping study extent.
+          </p>
+        </div>
+
+        <figure class="result-card">
+          <img src="step-5.png" alt="Step 5 output showing clipped PM2.5 polygons and land-use overlay." />
+          <figcaption>
+            Figure 7. Step 5 output showing the PM<span class="small-cap">2.5</span> polygons clipped to the
+            reclassified land-use polygons.
+          </figcaption>
+        </figure>
+
+        <div class="text-panel">
+          <h3>Step 6: Use Tabulate Area to Summarize Land-Use Area</h3>
+          <p>
+            The Tabulate Area tool was used to calculate the total area of land coded as non-source and the total
+            area coded as potential source within each clipped PM<span class="small-cap">2.5</span> polygon. This
+            step converted the binary land-use surface into numeric area totals for each analysis unit, making it
+            possible to compare PM<span class="small-cap">2.5</span> concentration against local land-cover composition.
+          </p>
+
+          <h3>Step 7: Use Calculate Field to Compute Percent Potential Source Land Use</h3>
+          <p>
+            The tabulated area totals were then used to calculate the percentage of each PM<span class="small-cap">2.5</span>
+            polygon classified as potential PM<span class="small-cap">2.5</span>-source land use. This percentage was
+            the main explanatory variable used in the regression analysis. It represents the share of the polygon area
+            occupied by land-cover classes coded as plausible PM<span class="small-cap">2.5</span> source land use.
+          </p>
+        </div>
+
+        <figure class="result-card">
+          <img src="step-6-7.png" alt="Combined Step 6 and Step 7 table showing tabulated area and calculated percent potential source land use." />
+          <figcaption>
+            Figure 8. Combined Steps 6 and 7 showing tabulated area values and the calculated percentage of
+            potential PM<span class="small-cap">2.5</span>-source land use.
+          </figcaption>
+        </figure>
+
+        <div class="text-panel">
+          <h3>Step 8: Join Tabulated Table with Clipped PM<span class="small-cap">2.5</span> Polygon</h3>
+          <p>
+            Finally, the tabulated area and percentage fields were joined back to the clipped PM<span class="small-cap">2.5</span>
+            polygon layer. The resulting feature class contained both the PM<span class="small-cap">2.5</span> value and
+            the percentage of potential source land use for each polygon. This final modelling layer was then used for
+            mapping, OLS regression, GWR analysis, and residual spatial autocorrelation testing.
+          </p>
+        </div>
+
+        <figure class="result-card">
+          <img src="step-8.png" alt="Step 8 output showing the final PM2.5 polygon layer joined with percent potential source land use." />
+          <figcaption>
+            Figure 9. Step 8 output showing the final modelling layer after joining the calculated percentage
+            fields back to the PM<span class="small-cap">2.5</span> polygons.
+          </figcaption>
+        </figure>
       </section>
 
       <section class="content-section reveal" id="results">
@@ -482,7 +465,7 @@
           <figure class="result-card">
             <img src="results-percent-source-land-use.png" alt="Map of percent potential PM2.5-source land use within each PM2.5 polygon." />
             <figcaption>
-              Figure 4. Percentage of each PM<span class="small-cap">2.5</span> polygon classified as potential
+              Figure 16. Percentage of each PM<span class="small-cap">2.5</span> polygon classified as potential
               PM<span class="small-cap">2.5</span>-source land use. This variable was used as the explanatory
               variable in the regression models.
             </figcaption>
@@ -491,7 +474,7 @@
           <figure class="result-card">
             <img src="results-ols-output.png" alt="OLS regression output for PM2.5 and percent potential source land use." />
             <figcaption>
-              Figure 5. OLS relationship between PM<span class="small-cap">2.5</span> concentration and percent
+              Figure 11. OLS relationship between PM<span class="small-cap">2.5</span> concentration and percent
               potential PM<span class="small-cap">2.5</span>-source land use. The global model reports
               R² = 0.201.
             </figcaption>
@@ -500,7 +483,7 @@
           <figure class="result-card">
             <img src="results-ols-standard-residuals.png" alt="OLS standardized residual map." />
             <figcaption>
-              Figure 6. Standardized residuals from the OLS model. Positive residuals indicate areas where the
+              Figure 12. Standardized residuals from the OLS model. Positive residuals indicate areas where the
               model under-predicted PM<span class="small-cap">2.5</span>, while negative residuals indicate areas
               where the model over-predicted PM<span class="small-cap">2.5</span>.
             </figcaption>
@@ -509,7 +492,7 @@
           <figure class="result-card">
             <img src="results-ols-morans-i.png" alt="Global Moran's I summary for OLS residuals." />
             <figcaption>
-              Figure 7. Global Moran’s I summary for OLS residuals. The high Moran’s Index indicates that OLS
+              Figure 13. Global Moran’s I summary for OLS residuals. The high Moran’s Index indicates that OLS
               residuals are strongly clustered.
             </figcaption>
           </figure>
@@ -517,7 +500,7 @@
           <figure class="result-card">
             <img src="results-gwr-local-r2.png" alt="GWR local R-squared map for PM2.5 and percent potential source land use." />
             <figcaption>
-              Figure 8. GWR local model-fit surface showing spatial variation in explanatory strength across
+              Figure 14. GWR local model-fit surface showing spatial variation in explanatory strength across
               Metro Vancouver. Higher values indicate stronger local model fit, while low or negative values
               indicate weak local explanatory performance.
             </figcaption>
@@ -526,7 +509,7 @@
           <figure class="result-card">
             <img src="results-gwr-standard-residuals.png" alt="GWR standardized residual map." />
             <figcaption>
-              Figure 9. Standardized residuals from the GWR model. Most residuals fall within ±2.5 standard
+              Figure 15. Standardized residuals from the GWR model. Most residuals fall within ±2.5 standard
               deviations, but the map still shows spatially structured areas of over- and under-prediction.
             </figcaption>
           </figure>
@@ -534,7 +517,7 @@
           <figure class="result-card">
             <img src="results-gwr-morans-i.png" alt="Global Moran's I summary for GWR residuals." />
             <figcaption>
-              Figure 10. Global Moran’s I summary for GWR residuals. GWR reduces residual spatial
+              Figure 16. Global Moran’s I summary for GWR residuals. GWR reduces residual spatial
               autocorrelation relative to OLS, but residual clustering remains statistically significant.
             </figcaption>
           </figure>
