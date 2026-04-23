@@ -95,6 +95,20 @@
         margin: 0;
         font-weight: 600;
       }
+
+
+      /* Visibility safeguard: ensure sections remain visible even if the
+         external reveal animation script or stylesheet fails on GitHub Pages. */
+      .reveal,
+      .reveal.active,
+      .content-section.reveal,
+      .hero-copy.reveal,
+      .hero-panel.reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+      }
+    
     </style>
   </head>
 
@@ -456,6 +470,7 @@
       </section>
 
       <section class="content-section reveal" id="results">
+        <!-- Results and discussion are forced visible with inline CSS above so GitHub Pages does not hide them if the reveal script fails. -->
         <div class="section-heading">
           <p class="section-kicker">6. Results</p>
           <h2>Maps and Model Outputs</h2>
@@ -465,7 +480,7 @@
           <figure class="result-card">
             <img src="results-percent-source-land-use.png" alt="Map of percent potential PM2.5-source land use within each PM2.5 polygon." />
             <figcaption>
-              Figure 16. Percentage of each PM<span class="small-cap">2.5</span> polygon classified as potential
+              Figure 10. Percentage of each PM<span class="small-cap">2.5</span> polygon classified as potential
               PM<span class="small-cap">2.5</span>-source land use. This variable was used as the explanatory
               variable in the regression models.
             </figcaption>
