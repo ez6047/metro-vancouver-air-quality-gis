@@ -96,6 +96,36 @@
         font-weight: 600;
       }
 
+      .data-stack {
+        display: grid;
+        gap: 2rem;
+        margin-top: 1.5rem;
+      }
+
+      .data-figure {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .data-figure img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .data-discussion {
+        max-width: 1100px;
+        margin: 0.9rem auto 0;
+      }
+
+      .data-source-line {
+        margin-top: 0.75rem;
+        font-size: 0.95rem;
+      }
+
+      .data-source-line a {
+        font-weight: 600;
+      }
 
       /* Visibility safeguard: ensure sections remain visible even if the
          external reveal animation script or stylesheet fails on GitHub Pages. */
@@ -141,7 +171,7 @@
 
       <section class="hero" id="home">
         <div class="hero-copy reveal">
-          <p class="eyebrow">GIS Final Project • Metro Vancouver</p>
+          <p class="eyebrow">GIS Final Project: Eric Zhang (50257260) &amp; Atticus Horne (57616567) • University of British Columbia 2025 W2 • Metro Vancouver</p>
           <h1>PM<span class="small-cap">2.5</span> and Potential Source Land Use at the 1 km Scale</h1>
           <p class="hero-subtitle">
             An ArcGIS Pro analysis of whether land-cover classes that could plausibly contribute to
@@ -180,11 +210,13 @@
           <p>
             This project examines whether the percentage of land cover classified as potential
             PM<span class="small-cap">2.5</span>-source land use is spatially associated with elevated
-            PM<span class="small-cap">2.5</span> concentrations across Metro Vancouver. The analysis uses a
-            remote-sensed PM<span class="small-cap">2.5</span> raster and a land-cover classification raster,
-            both processed in ArcGIS Pro. Land-cover classes were reclassified into binary source and non-source
-            categories, while PM<span class="small-cap">2.5</span> raster cells were converted into points and
-            then Thiessen polygons so that surrounding land-cover composition could be summarized consistently.
+            PM<span class="small-cap">2.5</span> concentrations across Metro Vancouver. The analysis uses two
+            main datasets: a Metro Vancouver land-cover classification raster and a 2023 annual ground-level
+            PM<span class="small-cap">2.5</span> raster from the Atmospheric Composition Analysis Group at
+            Washington University in St. Louis, provided at 0.01° × 0.01° resolution (about 1 km × 1 km).
+            Land-cover classes were reclassified into binary source and non-source categories, while
+            PM<span class="small-cap">2.5</span> raster cells were converted to points and then Thiessen polygons
+            so that surrounding land-cover composition could be summarized consistently.
           </p>
 
           <p>
@@ -194,6 +226,18 @@
             PM<span class="small-cap">2.5</span> polygons. Ordinary least squares (OLS) regression and
             geographically weighted regression (GWR) were then used to compare the global and local spatial
             relationships between potential source land use and PM<span class="small-cap">2.5</span>.
+          </p>
+
+          <p>
+            The results show a positive but limited global relationship. The OLS model produced an
+            R² of 0.201, meaning that percent potential source land use explained about 20.1% of the spatial
+            variation in PM<span class="small-cap">2.5</span>, while the coefficient of 0.018248 indicates that
+            each one-percentage-point increase in potential source land use was associated with a 0.018248-unit
+            increase in PM<span class="small-cap">2.5</span>. GWR showed that this relationship varies across
+            space and improved local interpretation, but strong residual clustering remained. Overall, the project
+            achieved its goal of identifying a spatial association between land use and PM<span class="small-cap">2.5</span>,
+            while also showing that land use alone does not fully explain PM<span class="small-cap">2.5</span>
+            patterns across Metro Vancouver.
           </p>
         </div>
       </section>
@@ -267,34 +311,68 @@
           <h2>Input Datasets</h2>
         </div>
 
-        <div class="results-grid">
-          <figure class="result-card">
+        <div class="data-stack">
+          <figure class="result-card data-figure">
             <img src="inputs-land-cover-classification.png" alt="Land cover classification map for Metro Vancouver." />
             <figcaption>
               Figure 1. Land-cover classification raster for Metro Vancouver. The classification includes built,
-              paved, vegetated, water, barren, soil, shadow, snow/ice, and mixed paved/vegetated classes.
+              paved, vegetated, water, barren, soil, shadow, snow/ice, and mixed paved-vegetated classes.
             </figcaption>
           </figure>
 
-          <figure class="result-card">
-            <img src="inputs-pm25-raster.png" alt="Remote-sensed PM2.5 raster for Metro Vancouver." />
+          <div class="text-panel data-discussion">
+            <h3>Land-use raster</h3>
+            <p>
+              This raster provides the categorical land-cover surface used to identify where potential
+              PM<span class="small-cap">2.5</span>-source land uses are concentrated across Metro Vancouver.
+              The map shows a clear contrast between dense urban and industrial land covers in the Vancouver,
+              Burnaby, Richmond, Surrey, and Langley corridor and the more vegetated and mountainous land covers
+              in the northern part of the region. That contrast is important because the analysis later simplifies
+              these detailed classes into binary source and non-source categories.
+            </p>
+            <p>
+              In practical terms, this dataset is the explanatory input. It does not measure emissions directly.
+              Instead, it acts as a land-use proxy for surfaces and land-cover types that could plausibly be
+              associated with higher particulate matter production or accumulation.
+            </p>
+            <p class="data-source-line">
+              Data source:
+              <a href="https://open-data-portal-metrovancouver.hub.arcgis.com/datasets/5dd153684b9b41249c0dcf09e79c9b25/about" target="_blank" rel="noopener noreferrer">
+                Metro Vancouver Open Data land-use raster
+              </a>
+            </p>
+          </div>
+
+          <figure class="result-card data-figure">
+            <img src="inputs-pm25-raster.png" alt="2023 annual ground-level PM2.5 raster for Metro Vancouver." />
             <figcaption>
-              Figure 2. Remote-sensed yearly mean PM<span class="small-cap">2.5</span> concentration raster for
-              the Metro Vancouver study area.
+              Figure 2. 2023 annual ground-level PM<span class="small-cap">2.5</span> raster for the Metro Vancouver study area.
             </figcaption>
           </figure>
-        </div>
 
-        <div class="text-panel">
-          <h3>PM<span class="small-cap">2.5</span> Raster</h3>
-          <p>
-            PM<span class="small-cap">2.5</span> refers to fine particulate matter with particle diameters less
-            than 2.5 micrometres. The PM<span class="small-cap">2.5</span> input is a remote-sensed raster
-            dataset sourced from researchers at Washington University in St. Louis. It represents yearly mean
-            PM<span class="small-cap">2.5</span> concentration and has approximately 0.01° resolution, with grid
-            cells roughly 1 km in length. PM<span class="small-cap">2.5</span> values are reported in
-            µg/m³.
-          </p>
+          <div class="text-panel data-discussion">
+            <h3>PM<span class="small-cap">2.5</span> raster</h3>
+            <p>
+              This surface represents the dependent variable in the analysis: annual ground-level fine particulate
+              matter for 2023. The dataset was produced by the Atmospheric Composition Analysis Group at Washington
+              University in St. Louis and is provided at 0.01° × 0.01° resolution, which is approximately
+              1 km × 1 km. It estimates PM<span class="small-cap">2.5</span> by combining satellite-derived
+              aerosol optical depth observations, the GEOS-Chem chemical transport model, and calibration to
+              ground-based monitoring observations.
+            </p>
+            <p>
+              Because the raster is a regional gridded surface, it is appropriate for neighbourhood- to regional-scale
+              comparison rather than street-level exposure analysis. The map captures broad spatial gradients in
+              PM<span class="small-cap">2.5</span> across Metro Vancouver, which makes it suitable for testing
+              whether areas with more potential source land use also tend to have higher concentrations.
+            </p>
+            <p class="data-source-line">
+              Data source:
+              <a href="https://sites.wustl.edu/acag/surface-pm2-5/#V6.GL.02.04" target="_blank" rel="noopener noreferrer">
+                Atmospheric Composition Analysis Group, Washington University in St. Louis — Surface PM<span class="small-cap">2.5</span> V6.GL.02.04
+              </a>
+            </p>
+          </div>
         </div>
       </section>
 
@@ -633,40 +711,62 @@
       <section class="content-section reveal" id="discussion">
         <div class="section-heading">
           <p class="section-kicker">7. Discussion</p>
-          <h2>Interpretation and Limitations</h2>
+          <h2>Interpretation, Conclusions, and Limitations</h2>
         </div>
 
         <div class="discussion-grid">
           <div class="text-panel">
             <p>
-              The analysis suggests a positive global association between potential PM<span class="small-cap">2.5</span>-source
-              land use and PM<span class="small-cap">2.5</span> concentration, but the relationship is not strong
-              enough to explain the full spatial pattern on its own. The OLS R² of 0.201 indicates that land-use
-              composition explains about 20.1% of PM<span class="small-cap">2.5</span> variation, while the strong
-              Moran’s I value for OLS residuals shows that substantial spatial structure remains unexplained.
+              The analysis identified a positive global association between potential PM<span class="small-cap">2.5</span>-source
+              land use and PM<span class="small-cap">2.5</span> concentration across Metro Vancouver. The OLS
+              R² of 0.201 means that percent potential source land use explained about 20.1% of the observed spatial
+              variation in PM<span class="small-cap">2.5</span>. This is meaningful because it shows the variable
+              is related to PM<span class="small-cap">2.5</span>, but it is also limited because roughly 79.9% of
+              the variation remains unexplained by this single predictor.
+            </p>
+
+            <p>
+              The OLS coefficient of 0.018248 indicates that, on average, a one-percentage-point increase in land
+              classified as potential PM<span class="small-cap">2.5</span>-source area is associated with a 0.018248-unit
+              increase in PM<span class="small-cap">2.5</span>. In practical terms, polygons containing more built,
+              paved, industrial, or otherwise source-like land-cover classes tended to have somewhat higher
+              PM<span class="small-cap">2.5</span> values. This supports the project goal by showing that land-use
+              composition is linked to particulate matter patterns, but it does not demonstrate direct causation.
             </p>
 
             <p>
               GWR improves the interpretation by allowing the relationship to vary across space. The local model-fit
-              map shows that the explanatory strength of the land-use variable is not constant across Metro Vancouver.
-              This supports the use of a spatially varying model, but the remaining GWR residual autocorrelation shows
-              that land use alone is still not sufficient to explain PM<span class="small-cap">2.5</span> patterns.
+              surface shows that explanatory strength is not constant across Metro Vancouver, which indicates spatial
+              non-stationarity in the relationship. In other words, potential source land use appears to matter more
+              in some parts of the region than in others. However, the remaining GWR residual autocorrelation shows
+              that even the local model does not fully account for the spatial structure in the PM<span class="small-cap">2.5</span>
+              surface.
             </p>
 
             <p>
-              The results should be interpreted cautiously. The land-cover variable is a proxy: it estimates the
-              percentage of each PM<span class="small-cap">2.5</span> polygon occupied by land uses that could
-              plausibly contribute to fine particulate matter, but it does not directly measure emissions. It also
-              does not capture traffic counts, industrial emission rates, fuel type, wind, topography, temperature,
-              atmospheric mixing, or regional background pollution.
+              Overall, the analyses achieved the main project goal: they identified a measurable spatial association
+              between potential PM<span class="small-cap">2.5</span>-source land use and PM<span class="small-cap">2.5</span>
+              concentration. At the same time, the results also show that land use alone is not enough to explain the
+              full regional pattern. Other factors, such as traffic intensity, industrial emissions, atmospheric mixing,
+              wind, topography, and regional background pollution, likely contribute substantially to the remaining
+              unexplained variation.
             </p>
 
             <p>
-              A second limitation is the spatial resolution of the PM<span class="small-cap">2.5</span> raster.
-              The approximately 1 km scale is appropriate for regional comparison but may smooth fine-scale
-              pollution gradients near roads, industrial parcels, or other localized sources. The workflow is also
-              affected by classification uncertainty, edge effects from Thiessen polygons, and the modifiable areal
-              unit problem because results may change under different polygon boundaries or raster resolutions.
+              The results should therefore be interpreted cautiously. The land-cover variable is a proxy: it estimates
+              the percentage of each PM<span class="small-cap">2.5</span> polygon occupied by land uses that could
+              plausibly contribute to fine particulate matter, but it does not directly measure emissions. The workflow
+              is also affected by classification uncertainty, edge effects from Thiessen polygons, and the modifiable
+              areal unit problem, because results may change under different polygon boundaries or raster resolutions.
+            </p>
+
+            <p>
+              A final limitation is the spatial resolution of the PM<span class="small-cap">2.5</span> dataset itself.
+              Although the Washington University surface is high quality for regional analysis and incorporates satellite
+              observations, chemical transport modelling, and calibration to ground monitors, it still represents a
+              gridded surface at about 1 km resolution. That means it is well suited to neighbourhood- and regional-scale
+              comparison, but it may smooth fine-scale pollution gradients near individual roads, industrial parcels,
+              or other localized sources.
             </p>
           </div>
 
@@ -686,7 +786,6 @@
 
     <footer class="site-footer">
       <p>GEOS 370 Final Project • ArcGIS Pro Spatial Analysis • Metro Vancouver</p>
-      <p>Eric Zhang (50257260) &amp; Atticus Horne (57616567) • University of British Columbia / April 2026</p>
     </footer>
 
     <button class="back-to-top" type="button" aria-label="Back to top">↑</button>
