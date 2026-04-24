@@ -127,6 +127,25 @@
         font-weight: 600;
       }
 
+      .hero-inline-image {
+        max-width: 760px;
+        margin: 1.5rem 0 1.75rem;
+      }
+
+      .hero-inline-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 1.25rem;
+        box-shadow: 0 14px 34px rgba(0, 0, 0, 0.14);
+      }
+
+      .hero-inline-image figcaption {
+        margin-top: 0.6rem;
+        font-size: 0.92rem;
+        opacity: 0.85;
+      }
+
       /* Visibility safeguard: ensure sections remain visible even if the
          external reveal animation script or stylesheet fails on GitHub Pages. */
       .reveal,
@@ -171,7 +190,7 @@
 
       <section class="hero" id="home">
         <div class="hero-copy reveal">
-          <p class="eyebrow">GEOS 370 Final Project: Eric Zhang (50257260) &amp; Atticus Horne (57616567) University of British Columbia 2025 W2</p>
+          <p class="eyebrow">Atticus Horne (57616567) &amp; Eric Zhang (50257260)</p>
           <h1>PM<span class="small-cap">2.5</span> and Potential Source Land Use at the 1 km Scale</h1>
           <p class="hero-subtitle">
             An ArcGIS Pro analysis of whether land-cover classes that could plausibly contribute to
@@ -184,6 +203,10 @@
             <span>Study Area: Metro Vancouver</span>
           </div>
         </div>
+
+        <figure class="hero-inline-image reveal">
+          <img src="vancouver-pollution.png" alt="Atmospheric haze over Vancouver used as a contextual opening image for the project." />
+        </figure>
 
         <div class="hero-panel reveal">
           <div class="hero-card">
@@ -783,8 +806,8 @@
         </div>
       </section>
     </main>
-
     <footer class="site-footer">
+      <p>Atticus Horne (57616567) &amp; Eric Zhang (50257260) • University of British Columbia 2025 W2</p>
       <p>GEOS 370 Final Project • ArcGIS Pro Spatial Analysis • Metro Vancouver</p>
     </footer>
 
